@@ -13,17 +13,33 @@
   <button type="submit">Create</button>
 </form> -->
 
+
 <%= form_with(model: @user) do |f| %>
 
-<%= f.label :username %>
-<%= f.text_field :username, placeholder: "3 to 15 characters" %>
+<% if @user.errors.any? %>
+    <div role="alert">
+      <span>
+        priority_high
+      </span>
+    <div>
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username, placeholder: "3 to 15 characters" %>
 
 
-<%= f.label :email %>
-<%= f.email_field :email %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
 
-<%= f.label :password %>
-<%= f.password_field :password, placeholder: "8 - 10 characters" %>
+  <%= f.label :password %>
+  <%= f.password_field :password, placeholder: "8 - 10 characters" %>
 
-<%= f.submit "Create" %>
+  <%= f.submit "Create" %>
 <% end %>

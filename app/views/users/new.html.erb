@@ -14,16 +14,30 @@
 </form> -->
 
 <%= form_with(model: @user) do |f| %>
+<div>
+  <%= f.label :username %>
+  <%= f.text_field :username, placeholder: "3 to 15 characters" %>
+  <% @user.errors.full_messages_for(:username).each do |m| %>
+  <div><%= m %>  </div>
+  <% end %>
+</div>
 
-<%= f.label :username %>
-<%= f.text_field :username, placeholder: "3 to 15 characters" %>
+<div>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <% @user.errors.full_messages_for(:email).each do |m| %>
+  <div><%= m %>  </div>
+  <% end %>
+</div>
 
-
-<%= f.label :email %>
-<%= f.email_field :email %>
-
-<%= f.label :password %>
-<%= f.password_field :password, placeholder: "8 - 10 characters" %>
-
-<%= f.submit "Create" %>
-<% end %>
+<div>
+  <%= f.label :password %>
+  <%= f.password_field :password, placeholder: "8 - 10 characters" %>
+  <% @user.errors.full_messages_for(:password).each do |m| %>
+  <div><%= m %>  </div>
+  <% end %>
+</div>
+<div>
+  <%= f.submit "Create" %>
+  <% end %>
+</div>
